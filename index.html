@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>USMC 251st Birthday Tribute &mdash; Semper Fidelis</title>
+<style>
+  :root { --scarlet:#8a0f0f; --scarlet2:#5c0808; --gold:#d4af37; --gold2:#f3d98b; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { height:100%; }
+  body { background:#000; color:#fff; overflow:hidden; font-family:Georgia,'Times New Roman',serif; }
+
+  /* ---------- Ken Burns stage ---------- */
+  #stage { position:fixed; inset:0; }
+  .kb { position:absolute; inset:0; opacity:0; transition:opacity 1.6s ease; }
+  .kb.on { opacity:1; }
+  .kb img { width:100%; height:100%; object-fit:cover; animation:kenburns 9s ease-out forwards; }
+  @keyframes kenburns {
+    0%   { transform:scale(1.02) translate(0,0); }
+    100% { transform:scale(1.18) translate(-1.5%, -2%); }
+  }
+  .shade { position:absolute; inset:0; background:linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 30%,rgba(0,0,0,0) 62%,rgba(0,0,0,.78) 100%); }
+
+  /* ---------- typography ---------- */
+  #frame { position:fixed; inset:0; z-index:5; display:flex; flex-direction:column; justify-content:space-between; padding:4vh 5vw; pointer-events:none; }
+  .topline { text-align:center; letter-spacing:.55em; font-size:clamp(10px,1.6vw,15px); color:var(--gold); text-transform:uppercase; text-shadow:0 2px 8px #000; }
+  .topline b { color:var(--gold2); }
+
+  .caption { text-align:center; }
+  .caption .t { font-size:clamp(20px,4.2vw,44px); font-weight:700; letter-spacing:.04em; color:#fff; text-shadow:0 3px 14px rgba(0,0,0,.9); }
+  .caption .c { margin-top:1vh; font-size:clamp(11px,1.7vw,15px); letter-spacing:.14em; text-transform:uppercase; color:var(--gold2); text-shadow:0 2px 8px #000; }
+
+  /* ---------- title / credits cards ---------- */
+  .card { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; opacity:0; transition:opacity 1.6s ease; pointer-events:none; background:radial-gradient(1100px 700px at 50% 30%, #1a0505 0%, #000 75%); }
+  .card.on { opacity:1; }
+  .ega { font-size:clamp(46px,9vw,110px); color:var(--gold); text-shadow:0 0 30px rgba(212,175,55,.55), 0 4px 10px #000; margin-bottom:2vh; }
+  .card h1 { font-size:clamp(26px,5.6vw,64px); letter-spacing:.10em; color:#fff; text-transform:uppercase; }
+  .card h1 span { color:var(--gold); }
+  .card h2 { margin-top:1.6vh; font-size:clamp(13px,2.3vw,22px); letter-spacing:.42em; color:var(--gold2); text-transform:uppercase; font-weight:400; }
+  .card .rule { width:min(46vw,340px); height:2px; margin:3vh auto; background:linear-gradient(90deg,transparent,var(--gold),transparent); }
+  .credits { list-style:none; font-size:clamp(10px,1.5vw,13.5px); line-height:1.9; color:#cdbf9a; max-width:88vw; }
+  .credits li b { color:var(--gold2); }
+
+  /* ---------- controls ---------- */
+  #ui { position:fixed; right:14px; bottom:12px; z-index:9; display:flex; gap:8px; }
+  #ui button { background:rgba(0,0,0,.55); color:var(--gold2); border:1px solid rgba(212,175,55,.5); border-radius:999px; padding:7px 13px; font-size:13px; cursor:pointer; }
+  #ui button:hover { background:rgba(138,15,15,.7); color:#fff; }
+  #music { position:fixed; left:14px; bottom:12px; z-index:9; font-size:11.5px; color:#b7a76d; letter-spacing:.05em; }
+  #music a { color:var(--gold2); }
+  #prog { position:fixed; left:0; bottom:0; height:3px; background:linear-gradient(90deg,var(--scarlet),var(--gold)); width:0%; z-index:9; transition:width .3s linear; }
+</style>
+</head>
+<body>
+
+<div id="stage"></div>
+
+<div id="frame">
+  <div class="topline">United States Marine Corps &middot; <b>10 November 1775</b> &middot; 251 Years</div>
+  <div class="caption">
+    <div class="t" id="capT"></div>
+    <div class="c" id="capC"></div>
+  </div>
+</div>
+
+<!-- TITLE CARD -->
+<section class="card" id="title">
+  <div class="ega">&#9875;</div>
+  <h1>Happy <span>251st</span> Birthday</h1>
+  <h2>United States Marines &middot; Semper Fidelis</h2>
+  <div class="rule"></div>
+  <h2 style="letter-spacing:.2em;">First to Fight &middot; The Few &middot; The Proud</h2>
+</section>
+
+<!-- CREDITS CARD -->
+<section class="card" id="credits">
+  <div class="ega">&#9875;</div>
+  <h1 style="font-size:clamp(20px,3.6vw,40px);">Image <span>Credits</span></h1>
+  <div class="rule"></div>
+  <ul class="credits"><li>&ldquo;Marine Corps War Memorial&rdquo; &mdash; Wikimedia Commons</li><li>&ldquo;Raising the Flag on Iwo Jima&rdquo; &mdash; Joe Rosenthal / AP</li><li>&ldquo;A mortarman's greeting&rdquo; &mdash; DVIDS / U.S. Marine Corps (public domain)</li><li>&ldquo;Sunset at the Marine Corps Memorial&rdquo; &mdash; Metal art print photo via Etsy listing</li><li>&ldquo;The Memorial at golden hour&rdquo; &mdash;  washington.org — photo: Michael Chinnici</li><li>&ldquo;Evening colors over the Corps&rdquo; &mdash; Brad Williams Photography</li><li>&ldquo;The Eagle, Globe and Anchor&rdquo; &mdash; DVIDS / U.S. Marine Corps (public domain)</li><li>&ldquo;EGA through the ages&rdquo; &mdash; Marines.mil / U.S. Marine Corps (public domain)</li><li>&ldquo;The traditional birthday cake&rdquo; &mdash; American Dream Cakes</li><li>&ldquo;Happy Birthday Marines&rdquo; &mdash; American Dream Cakes</li></ul>
+  <p style="margin-top:2vh;font-size:clamp(10px,1.4vw,12.5px);color:#8f8f8f;">Personal tribute slideshow. Images remain the property of their respective owners/creators.</p>
+</section>
+
+<div id="ui">
+  <button id="prev">&#10094;</button>
+  <button id="next">&#10095;</button>
+</div>
+<div id="music">Anthem: &ldquo;America&rsquo;s Thunder&rdquo; &mdash; add <b>anthem.mp3</b> beside this file to auto-play &middot; <a href="https://suno.com/s/RgIWR9w8uSvELTm5" target="_blank" rel="noopener">suno.com/s/RgIWR9w8uSvELTm5</a></div>
+<div id="prog"></div>
+
+<audio id="anthem" src="anthem.mp3" loop preload="auto"></audio>
+
+<script>
+var SLIDES = [{src:"slide01.jpg",cap:'Marine Corps War Memorial — Arlington, Virginia',who:'Wikimedia Commons'},{src:"slide02.jpg",cap:'Raising the Flag on Iwo Jima — February 23, 1945',who:'Joe Rosenthal / AP'},{src:"slide03.jpg",cap:"A mortarman's greeting — Helmand Province, Afghanistan",who:'DVIDS / U.S. Marine Corps (public domain)'},{src:"slide04.jpg",cap:'Sunset at the Marine Corps Memorial',who:'Metal art print photo via Etsy listing'},{src:"slide05.jpg",cap:'The Memorial at golden hour',who:' washington.org — photo: Michael Chinnici'},{src:"slide06.jpg",cap:'Evening colors over the Corps',who:'Brad Williams Photography'},{src:"slide07.jpg",cap:'The Eagle, Globe and Anchor',who:'DVIDS / U.S. Marine Corps (public domain)'},{src:"slide08.jpg",cap:'EGA through the ages — dress and service',who:'Marines.mil / U.S. Marine Corps (public domain)'},{src:"slide09.jpg",cap:'The traditional birthday cake — 232nd, Iwo Jima',who:'American Dream Cakes'},{src:"slide10.jpg",cap:'Happy Birthday Marines — celebration cake',who:'American Dream Cakes'}];
+var DUR = 7000, i = -2, timer = null;
+var stage = document.getElementById("stage");
+var capT = document.getElementById("capT"), capC = document.getElementById("capC");
+var title = document.getElementById("title"), credits = document.getElementById("credits");
+var prog = document.getElementById("prog");
+
+/* build kb layers */
+SLIDES.forEach(function (s) {
+  var d = document.createElement("div");
+  d.className = "kb";
+  d.innerHTML = '<img src="' + s.src + '" alt=""><div class="shade"></div>';
+  stage.appendChild(d);
+});
+
+var kbs = Array.prototype.slice.call(document.querySelectorAll(".kb"));
+var N = kbs.length;
+
+function show(n) {
+  i = ((n % (N + 2)) + (N + 2)) % (N + 2) - 2;   /* -2 title, -1..N-2 slides handled below */
+  /* map: idx -2 = title, -1..N-1? simpler: use sequence array */
+  seq();
+}
+
+/* sequence: title, slides 0..N-1, credits, repeat */
+var order = [-1].concat(SLIDES.map(function (_, k) { return k; })).concat([-2]);
+var pos = 0;
+
+function render() {
+  var idx = order[pos];
+  title.classList.toggle("on", idx === -1);
+  credits.classList.toggle("on", idx === -2);
+  kbs.forEach(function (el, k) { el.classList.toggle("on", k === idx); });
+  if (idx >= 0) {
+    capT.textContent = SLIDES[idx].cap;
+    capC.textContent = SLIDES[idx].who;
+    /* restart ken burns */
+    var img = kbs[idx].querySelector("img");
+    img.style.animation = "none"; void img.offsetWidth; img.style.animation = "";
+  } else {
+    capT.textContent = ""; capC.textContent = "";
+  }
+  prog.style.width = "0%";
+  clearTimeout(timer);
+  timer = setTimeout(next, DUR);
+  var t0 = Date.now();
+  var iv = setInterval(function () {
+    if (order[pos] !== idx) { clearInterval(iv); return; }
+    prog.style.width = Math.min(100, (Date.now() - t0) / DUR * 100) + "%";
+  }, 120);
+}
+function next() { pos = (pos + 1) % order.length; render(); }
+function prev() { pos = (pos - 1 + order.length) % order.length; render(); }
+
+document.getElementById("next").addEventListener("click", next);
+document.getElementById("prev").addEventListener("click", prev);
+document.addEventListener("keydown", function (e) {
+  if (e.key === "ArrowRight" || e.key === " ") next();
+  if (e.key === "ArrowLeft") prev();
+});
+
+/* preload then start */
+var loaded = 0;
+SLIDES.forEach(function (s) {
+  var im = new Image();
+  im.onload = im.onerror = function () {
+    if (++loaded >= SLIDES.length) render();
+  };
+  im.src = s.src;
+});
+
+/* music: try autoplay (muted workaround is pointless for anthems; wait for first tap) */
+var anthem = document.getElementById("anthem");
+function tryPlay() { anthem.play().catch(function(){}); document.removeEventListener("click", tryPlay); document.removeEventListener("keydown", tryPlay); }
+anthem.addEventListener("canplay", function once() {
+  anthem.removeEventListener("canplay", once);
+  var p = anthem.play();
+  if (p && p.catch) p.catch(function () {
+    document.addEventListener("click", tryPlay);
+    document.addEventListener("keydown", tryPlay);
+  });
+});
+</script>
+</body>
+</html>
