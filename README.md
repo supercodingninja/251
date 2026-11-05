@@ -1,2 +1,0 @@
-# 251
-Happy 251st Birthday, UNITED STATES MARINES!
